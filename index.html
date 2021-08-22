@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="./davidshimjs-qrcodejs-04f46c6/jquery.min.js"></script>
+  <script type="text/javascript" src="./davidshimjs-qrcodejs-04f46c6/qrcode.js"></script>
+  <title>QR Code generator</title>
+</head>
+<body>
+  <input type="text" name="" id="text">
+  <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+  <script type="text/javascript">
+  const qrcode = new QRCode(document.getElementById('qrcode'), {
+  width : 200,
+  height : 200,
+});
+
+const qrObject = {
+  name: 'David',
+  lastname: 'Zuniga',
+  vaccinated: 'yes',
+  vaccine: 'Pfizer',
+  covidPositive: 'no',
+}
+
+
+const makeCode = () => {
+  const qrText = document.getElementById('text');
+
+  // if (!qrText.value) {
+  //   alert('input a text');
+  //   qrText.focus()
+  //   return;
+  // }
+
+  // qrcode.makeCode(`
+  // Name: ${qrObject.name}
+  // Lastname: ${qrObject.lastname}
+  // Vaccinated: ${qrObject.vaccinated}
+  // Vaccine: ${qrObject.vaccine}`);
+  qrcode.makeCode();
+}
+
+makeCode();
+
+$('#text').
+  on('blur', () => {
+    makeCode();
+  }).
+  on('keydown', (e) => {
+    if (e.keyCode == 13) {
+      makeCode();
+    }
+  });
+  </script>
+</body>
+</html>
